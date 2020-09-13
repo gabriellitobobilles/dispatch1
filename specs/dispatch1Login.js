@@ -10,12 +10,14 @@ describe('My Login application', () => {
         LoginPage.open();
         SecurePage.loginBtn.waitForDisplayed({ timeout: 270000 });
         SecurePage.loginBtn.click()
+        LoginPage.login(testdata.Account.Email, testdata.Account.Password);
         
     });
 
     it('should login with valid credentials', () => {
         
-        LoginPage.login(testdata.Account.Email, testdata.Account.Password);
+        
+
         //**client */
         SecurePage.dispatchMenu.moveTo()
         SecurePage.dispatchManageSubMenu.click()
@@ -39,41 +41,41 @@ describe('My Login application', () => {
         SecurePage.clientLocationOption.selectByVisibleText(`Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam`)
 
         //**OverView */
-        $(`[id="Issue"]`).click();
-        $(`[id="Issue"]`).setValue(`Test Gabriel`)
-        $(`[id="ScopeOfWork"]`).click()
-        $(`[id="ScopeOfWork"]`).setValue(`This is just a test project please ignore thanks ~~ gabriel`)
+        SecurePage.issueTitle.click();
+        SecurePage.issueTitle.setValue(`Test Gabriel`)
+        SecurePage.scopeOfWork.click()
+        SecurePage.scopeOfWork.setValue(`This is just a test project please ignore thanks ~~ gabriel`)
         browser.pause(5000);
-        $(`[id="ProblemCodeId"]`).scrollIntoView()
-        $(`[id="ProblemCodeId"]`).moveTo()
-        $(`[id="ProblemCodeId"]`).selectByVisibleText(`New Equipment Installation`)
+        SecurePage.problemCodeId.scrollIntoView()
+        SecurePage.problemCodeId.moveTo()
+        SecurePage.problemCodeId.selectByVisibleText(`New Equipment Installation`)
         browser.pause(5000);
-        $(`[name="TechnicianTypeId"]`).scrollIntoView()
-        $(`[name="TechnicianTypeId"]`).moveTo()
-        $(`[name="TechnicianTypeId"]`).selectByVisibleText(`Field Tech`)
+        SecurePage.technicianTypeId.scrollIntoView()
+        SecurePage.technicianTypeId.moveTo()
+        SecurePage.technicianTypeId.selectByVisibleText(`Field Tech`)
         browser.pause(5000);
-        $(`[id="NumberOfTechs"]`).scrollIntoView()
-        $(`[id="NumberOfTechs"]`).moveTo()
-        $(`[id="NumberOfTechs"]`).selectByVisibleText(`10`)
+        SecurePage.numberOfTechs.scrollIntoView()
+        SecurePage.numberOfTechs.moveTo()
+        SecurePage.numberOfTechs.selectByVisibleText(`10`)
 
         // ** Scheduling */
-        $(`[id="KinettixResponseCategoryId"]`).scrollIntoView()
-        $(`[id="KinettixResponseCategoryId"]`).moveTo()
-        $(`[id="KinettixResponseCategoryId"]`).selectByVisibleText(`Next Business Day`)
+        SecurePage.kinettixResponseCategoryId.scrollIntoView()
+        SecurePage.kinettixResponseCategoryId.moveTo()
+        SecurePage.kinettixResponseCategoryId.selectByVisibleText(`Next Business Day`)
         browser.pause(1000);
-        $(`[id="ClientPreferredDateTime"]`).click()
+        SecurePage.clientPreferredDateTime.click()
 
         // ** required Tools */
-        $(`[id="TicketRequiredTools"]`).scrollIntoView()
-        $(`[id="TicketRequiredTools"]`).click()
-        $(`[id="TicketRequiredTools"]`).setValue(`This is just a test project please ignore thanks ~~ gabriel`)
+        SecurePage.ticketRequiredTools.scrollIntoView()
+        SecurePage.ticketRequiredTools.click()
+        SecurePage.ticketRequiredTools.setValue(`This is just a test project please ignore thanks ~~ gabriel`)
 
 
-        $('button=Save').scrollIntoView()
-        $('button=Save').click()
-        $(`[id="StatusdDropDown"]`).waitForDisplayed({ timeout: 270000 });
-        assert.strictEqual($('button=Cancel Ticket').isEnabled(), true);
-        assert.strictEqual($('button=Hold Ticket').isEnabled(), true);
+        SecurePage.saveBtn.scrollIntoView()
+        SecurePage.saveBtn.click()
+        SecurePage.statusDropDown.waitForDisplayed({ timeout: 270000 });
+        assert.strictEqual(SecurePage.cancelTicketBtn.isEnabled(), true);
+        assert.strictEqual(SecurePage.holdTicketBtn.isEnabled(), true);
         // browser.pause(900000);
 
     });

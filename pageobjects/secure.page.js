@@ -23,9 +23,22 @@ class SecurePage  {
     get clientCountryOption () { return $('//*[@id="CountryId"]')}
     get clientLocationOption () { return $('//*[@id="ClientSiteID"]')}
     
-    
-    
-    
+    //**OverView */
+    get issueTitle () { return $(`[id="Issue"]`)}
+    get scopeOfWork () { return $(`[id="ScopeOfWork"]`)}
+    get problemCodeId () { return $(`[id="ProblemCodeId"]`)}
+    get technicianTypeId () { return $(`[name="TechnicianTypeId"]`)}
+    get numberOfTechs () { return $(`[id="NumberOfTechs"]`)}
+    // ** Scheduling */
+    get kinettixResponseCategoryId () { return $(`[id="KinettixResponseCategoryId"]`)}
+    get clientPreferredDateTime () { return $(`[id="ClientPreferredDateTime"]`)}
+    // ** required Tools */
+    get ticketRequiredTools () { return $(`[id="TicketRequiredTools"]`)}
+    // ** Miscellaneous elements */
+    get saveBtn () { return $('button=Save')}
+    get statusDropDown () { return $(`[id="StatusdDropDown"]`)}
+    get cancelTicketBtn () { return $('button=Cancel Ticket')}
+    get holdTicketBtn () { return $('button=Hold Ticket')}
 }
 
 module.exports = new SecurePage();
