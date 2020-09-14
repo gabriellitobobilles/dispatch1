@@ -16,28 +16,26 @@ describe('My Login application', () => {
 
     it('should login with valid credentials', () => {
         
-        
-
         //**client */
-        SecurePage.dispatchMenu.moveTo()
+        LoginPage.moveToElement(SecurePage.dispatchMenu)
         SecurePage.dispatchManageSubMenu.click()
         browser.pause(1000);
         SecurePage.addTicketBtn.waitForDisplayed({ timeout: 270000 });
         SecurePage.addTicketBtn.click()
         browser.pause(1000);
-        SecurePage.addClientOption.moveTo();
+        LoginPage.moveToElement(SecurePage.addClientOption)
         SecurePage.addClientOption.selectByVisibleText(`Walker Industries`)
         browser.pause(5000);
-        SecurePage.endClientOption.moveTo()
+        LoginPage.moveToElement(SecurePage.endClientOption)
         SecurePage.endClientOption.selectByVisibleText(`Thornton and Co`)
         browser.pause(5000);
-        SecurePage.clientContactOption.moveTo()
+        LoginPage.moveToElement(SecurePage.clientContactOption)
         SecurePage.clientContactOption.selectByVisibleText(`Menwon  Borh`)
         browser.pause(5000);
-        SecurePage.clientCountryOption.moveTo()
+        LoginPage.moveToElement(SecurePage.clientCountryOption)
         SecurePage.clientCountryOption.selectByVisibleText(`Guam`)
         browser.pause(5000);
-        SecurePage.clientLocationOption.moveTo()
+        LoginPage.moveToElement(SecurePage.clientLocationOption)
         SecurePage.clientLocationOption.selectByVisibleText(`Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam`)
 
         //**OverView */
@@ -46,32 +44,32 @@ describe('My Login application', () => {
         SecurePage.scopeOfWork.click()
         SecurePage.scopeOfWork.setValue(`This is just a test project please ignore thanks ~~ gabriel`)
         browser.pause(5000);
-        SecurePage.problemCodeId.scrollIntoView()
-        SecurePage.problemCodeId.moveTo()
+        LoginPage.scrollElement(SecurePage.problemCodeId)
+        LoginPage.moveToElement(SecurePage.problemCodeId)
         SecurePage.problemCodeId.selectByVisibleText(`New Equipment Installation`)
         browser.pause(5000);
-        SecurePage.technicianTypeId.scrollIntoView()
-        SecurePage.technicianTypeId.moveTo()
+        LoginPage.scrollElement(SecurePage.technicianTypeId)
+        LoginPage.moveToElement(SecurePage.technicianTypeId)
         SecurePage.technicianTypeId.selectByVisibleText(`Field Tech`)
         browser.pause(5000);
-        SecurePage.numberOfTechs.scrollIntoView()
-        SecurePage.numberOfTechs.moveTo()
+        LoginPage.scrollElement(SecurePage.numberOfTechs)
+        LoginPage.moveToElement(SecurePage.numberOfTechs)
         SecurePage.numberOfTechs.selectByVisibleText(`10`)
 
         // ** Scheduling */
-        SecurePage.kinettixResponseCategoryId.scrollIntoView()
-        SecurePage.kinettixResponseCategoryId.moveTo()
+        LoginPage.scrollElement(SecurePage.kinettixResponseCategoryId)
+        LoginPage.moveToElement(SecurePage.kinettixResponseCategoryId)
         SecurePage.kinettixResponseCategoryId.selectByVisibleText(`Next Business Day`)
         browser.pause(1000);
         SecurePage.clientPreferredDateTime.click()
 
         // ** required Tools */
-        SecurePage.ticketRequiredTools.scrollIntoView()
+        LoginPage.scrollElement(SecurePage.ticketRequiredTools)
         SecurePage.ticketRequiredTools.click()
         SecurePage.ticketRequiredTools.setValue(`This is just a test project please ignore thanks ~~ gabriel`)
 
 
-        SecurePage.saveBtn.scrollIntoView()
+        LoginPage.scrollElement(SecurePage.saveBtn)
         SecurePage.saveBtn.click()
         SecurePage.statusDropDown.waitForDisplayed({ timeout: 270000 });
         assert.strictEqual(SecurePage.cancelTicketBtn.isEnabled(), true);

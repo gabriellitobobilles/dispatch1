@@ -32,4 +32,12 @@ module.exports = class Page {
         }
         
     }
+
+    scrollElement (selector){
+        selector.scrollIntoView();
+    }
+
+    moveToElement (selector){
+        selector.moveTo();
+    }
 }
