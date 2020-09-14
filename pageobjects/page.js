@@ -33,6 +33,41 @@ module.exports = class Page {
         
     }
 
+    preferredTechDate () {
+      
+        let schedTime =this._getSchedule()
+        let month = this._getmonth_name(new Date(schedTime))
+        let dt =  new Date(schedTime)
+        let day = dt.getDate()
+        elem.clientPreferredDateTime.click()
+        browser.pause(3000);
+        $(`[class="picker-switch"]`).moveTo()
+        $(`[class="picker-switch"]`).click()
+        $(`span=${month}`).click()
+        $(`td=${day}`).click()
+        
+    }
+
+    _getSchedule(){
+
+
+        const now = new Date(new Date().setDate(new Date().getDate() +this._randomDated()));
+        const day = ('0' + now.getDate()).slice(-2);
+        const month = ('0' + (now.getMonth() + 1)).slice(-2);
+        const today = (month) + '/' + (day) + '/' + now.getFullYear();
+        return today;
+
+    }
+
+     _getmonth_name (dt){
+        let mlist = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+          return mlist[dt.getMonth()];
+        }
+        
+    _randomDated(){
+        return Math.floor(Math.random() * 7) + 1
+    }
+
     scrollElement (selector){
         selector.scrollIntoView();
     }

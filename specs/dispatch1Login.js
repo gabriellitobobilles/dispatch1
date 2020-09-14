@@ -61,7 +61,7 @@ describe('My Login application', () => {
         LoginPage.moveToElement(SecurePage.kinettixResponseCategoryId)
         SecurePage.kinettixResponseCategoryId.selectByVisibleText(`Next Business Day`)
         browser.pause(1000);
-        SecurePage.clientPreferredDateTime.click()
+        LoginPage.preferredTechDate()
 
         // ** required Tools */
         LoginPage.scrollElement(SecurePage.ticketRequiredTools)
