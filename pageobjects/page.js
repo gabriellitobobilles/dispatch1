@@ -26,7 +26,7 @@ module.exports = class Page {
         elem.nextBtn.click(); 
         elem.remainBtn.waitForDisplayed({ timeout: 270000 });
         elem.remainBtn.click()
-        browser.waitUntil(() => browser.isAlertOpen() === true, { timeout: 270000 })
+        browser.waitUntil(() => browser.isAlertOpen() === false, { timeout: 270000 })
         if(browser.isAlertOpen()){
             browser.acceptAlert()
         }

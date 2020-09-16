@@ -25,7 +25,7 @@ class SecurePage  {
     
     //**OverView */
     get issueTitle () { return $(`[id="Issue"]`)}
-    get scopeOfWork () { return $(`[id="ScopeOfWork"]`)}
+    get scopeOfWork () { return $(`[id="tinymce"]`)}
     get problemCodeId () { return $(`[id="ProblemCodeId"]`)}
     get technicianTypeId () { return $(`[name="TechnicianTypeId"]`)}
     get numberOfTechs () { return $(`[id="NumberOfTechs"]`)}
@@ -39,6 +39,22 @@ class SecurePage  {
     get statusDropDown () { return $(`[id="StatusdDropDown"]`)}
     get cancelTicketBtn () { return $('button=Cancel Ticket')}
     get holdTicketBtn () { return $('button=Hold Ticket')}
+
+    // ** Vendor Menu *
+    get ventureUrl () { return $(`[id="vendorsUrl"]`)}
+    get addVendorBtn () { return $(`[id="btnAddVendor"]`)}
+    get vendorTypeOption () { return $(`[id="Type"]`)}
+    get vendorName () { return $(`[id="Name"]`)}
+    get vendorDetails () { return $(`[id="VendorDetails"]`)}
+    get vendorBusinessPhone () { return $(`[id="BusinessPhone"]`)}
+    get vendorSecondaryPhone () { return $(`[id="SecondaryPhone"]`)}
+    get vendorPhoneInvalid () { return $(`[class="PhoneMessage text-danger"]`)}
+    get vendorPhoneValid () { return $(`[class="PhoneMessage text-success"]`)}
+
+    
+    
+    
+    
 }
 
 module.exports = new SecurePage();

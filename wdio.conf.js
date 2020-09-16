@@ -1,4 +1,5 @@
-  let allure = require('allure-commandline');
+let allure = require('allure-commandline');
+const { join } = require('path');
 exports.config = {
     //
     // ====================
@@ -29,7 +30,9 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './specs/**/*.js'
+       //  './specs/**/dispatch1Login.js',
+        './specs/**/screenCompare.js'
+        
     ],
     // Patterns to exclude.
     exclude: [
@@ -103,7 +106,9 @@ exports.config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
     // baseUrl: 'http://localhost',
-    baseUrl: 'https://uat.dispatch1.com/',
+    // baseUrl: 'https://uat.dispatch1.com/',
+     baseUrl: 'https://qa.dispatch1.com/',
+    // baseUrl,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 60000,
@@ -119,7 +124,37 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    // services: ['chromedriver'],
+    services: [
+        ['image-comparison',
+        // The options
+        {
+            // Some options, see the docs for more
+            baselineFolder: join(process.cwd(), './tests/sauceLabsBaseline/'),
+            formatImageName: '{tag}-{logName}-{width}x{height}',
+            screenshotPath: join(process.cwd(), '.tmp/'),
+            savePerInstance: true,
+            autoSaveBaseline: false,
+            blockOutStatusBar: true,
+            blockOutToolBar: true,
+            returnAllCompareData: true,
+            // NOTE: When you are testing a hybrid app please use this setting
+            isHybridApp: true,
+            // Options for the tabbing image
+            tabbableOptions:{
+                circle:{
+                    size: 18,
+                    fontSize: 18,
+                    // ...
+                },
+                line:{
+                    color: '#ff221a', // hex-code or for example words like `red|black|green`
+                    width: 3,
+                },
+            }
+            // ... more options
+        }], 'chromedriver'
+    ],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -138,22 +173,22 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    // reporters: ['spec'],
+     reporters: ['spec'],
 
     // reporters: [['allure', {
     //     outputDir: './allure-results',
     //     disableWebdriverStepsReporting: true,
     //     disableWebdriverScreenshotsReporting: true,
     // }]],
-    reporters: ['allure'],
-    reporterOptions: {
-        allure: {
-            outputDir: 'allure-results',
-            disableWebdriverStepsReporting: true,
-            disableWebdriverScreenshotsReporting: true,
-            useCucumberStepReporter: false
-        }
-    },
+    // reporters: ['allure'],
+    // reporterOptions: {
+    //     allure: {
+    //         outputDir: 'allure-results',
+    //         disableWebdriverStepsReporting: true,
+    //         disableWebdriverScreenshotsReporting: true,
+    //         useCucumberStepReporter: false
+    //     }
+    // },
 
     
     //
