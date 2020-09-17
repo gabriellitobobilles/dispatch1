@@ -84,7 +84,7 @@ describe('My Login application', () => {
 
     });
 
-    it('KIN-838: Validate Primary Vendor Number', () => {
+    xit('KIN-838: Validate Primary Vendor Number', () => {
         
         //**client */
         LoginPage.moveToElement(SecurePage.ventureUrl)
@@ -152,7 +152,7 @@ describe('My Login application', () => {
 
     });
 
-    it('KIN-838: Validate Secondary Vendor Number', () => {
+    xit('KIN-838: Validate Secondary Vendor Number', () => {
         
         //**client */
         LoginPage.moveToElement(SecurePage.ventureUrl)
@@ -220,6 +220,25 @@ describe('My Login application', () => {
 
     });
 
+    it('KIN-773: Limit field lengths on Client Provided PO and WO Number', () => {
+
+        //**client */
+        LoginPage.moveToElement(SecurePage.dispatchMenu)
+        SecurePage.dispatchManageSubMenu.click()
+        browser.pause(1000);
+        SecurePage.addTicketBtn.waitForDisplayed({ timeout: 270000 });
+        SecurePage.addTicketBtn.click()
+        browser.pause(1000);
+        SecurePage.poNumber.click();
+        SecurePage.poNumber.setValue(LoginPage._randomString(35));
+        assert.strictEqual(SecurePage.poNumber.getValue().length, 29);
+        browser.pause(1000);
+        SecurePage.woNumber.click()
+        SecurePage.woNumber.setValue(LoginPage._randomString(35));
+        assert.strictEqual(SecurePage.woNumber.getValue().length, 29);
+    
+    });
+    
     afterEach(function() {
         // runs after all tests in this file
         browser.closeWindow()

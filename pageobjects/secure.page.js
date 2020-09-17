@@ -29,6 +29,8 @@ class SecurePage  {
     get problemCodeId () { return $(`[id="ProblemCodeId"]`)}
     get technicianTypeId () { return $(`[name="TechnicianTypeId"]`)}
     get numberOfTechs () { return $(`[id="NumberOfTechs"]`)}
+    get poNumber () { return $(`[id="ClientPO_"]`)}
+    get woNumber () { return $(`[id="ClientProvidedWorkOrder_"]`)}
     // ** Scheduling */
     get kinettixResponseCategoryId () { return $(`[id="KinettixResponseCategoryId"]`)}
     get clientPreferredDateTime () { return $(`[id="ClientPreferredDateTime"]`)}
@@ -39,6 +41,7 @@ class SecurePage  {
     get statusDropDown () { return $(`[id="StatusdDropDown"]`)}
     get cancelTicketBtn () { return $('button=Cancel Ticket')}
     get holdTicketBtn () { return $('button=Hold Ticket')}
+
 
     // ** Vendor Menu *
     get ventureUrl () { return $(`[id="vendorsUrl"]`)}
