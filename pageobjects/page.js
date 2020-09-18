@@ -2,8 +2,8 @@
 * main page object containing all methods, selectors and functionality
 * that is shared across all page objects
 */
-
 const elem = require('./secure.page');
+const assert = require("assert");
 module.exports = class Page {
     /**
     * Opens a sub page of the page
@@ -31,6 +31,78 @@ module.exports = class Page {
             browser.acceptAlert()
         }
         
+    }
+
+    createNewDispatchTicket () {
+        //**client */
+        this.moveToElement(elem.dispatchMenu)
+        elem.dispatchManageSubMenu.click()
+        browser.pause(1000);
+        elem.addTicketBtn.waitForDisplayed({ timeout: 270000 });
+        elem.addTicketBtn.click()
+        browser.pause(1000);
+        this.moveToElement(elem.addClientOption)
+        elem.addClientOption.selectByVisibleText(`Walker Industries`)
+        browser.pause(5000);
+        this.moveToElement(elem.endClientOption)
+        elem.endClientOption.selectByVisibleText(`Thornton and Co`)
+        browser.pause(5000);
+        this.moveToElement(elem.clientContactOption)
+        elem.clientContactOption.selectByVisibleText(`Menwon  Borh`)
+        browser.pause(5000);
+        this.moveToElement(elem.clientCountryOption)
+        elem.clientCountryOption.selectByVisibleText(`Guam`)
+        browser.pause(5000);
+        this.moveToElement(elem.clientLocationOption)
+        elem.clientLocationOption.selectByVisibleText(`Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam`)
+
+        //**OverView */
+        this.scrollElement(elem.issueTitle)
+        elem.issueTitle.click();
+        elem.issueTitle.setValue(`Test Gabriel`)
+        browser.switchToFrame($(`#ScopeOfWork_ifr`))
+        elem.scopeOfWork.click()
+        elem.scopeOfWork.setValue(`This is just a test project please ignore thanks ~~ gabriel`)
+        browser.switchToParentFrame();
+        browser.pause(2000);
+        this.scrollElement(elem.problemCodeId)
+        this.moveToElement(elem.problemCodeId)
+        elem.problemCodeId.selectByVisibleText(`New Equipment Installation`)
+        browser.pause(5000);
+        this.scrollElement(elem.technicianTypeId)
+        this.moveToElement(elem.technicianTypeId)
+        elem.technicianTypeId.selectByVisibleText(`Field Tech`)
+        browser.pause(5000);
+        this.scrollElement(elem.numberOfTechs)
+        this.moveToElement(elem.numberOfTechs)
+        elem.numberOfTechs.selectByVisibleText(`10`)
+
+        // ** Scheduling */
+        this.scrollElement(elem.kinettixResponseCategoryId)
+        this.moveToElement(elem.kinettixResponseCategoryId)
+        elem.kinettixResponseCategoryId.selectByVisibleText(`Next Business Day`)
+        browser.pause(1000);
+        this.preferredTechDate()
+
+        // ** required Tools */
+        browser.switchToFrame($(`#TicketRequiredTools_ifr`))
+        this.scrollElement(elem.ticketRequiredTools)
+        elem.ticketRequiredTools.click()
+        elem.ticketRequiredTools.setValue(`This is just a test project please ignore thanks ~~ gabriel`)
+        browser.switchToParentFrame();
+
+        elem.MSN.click()
+        elem.MSN.setValue(`3424342342343244`)
+        browser.pause(3000);
+        this.moveToElement(elem.equipment)
+        elem.equipment.selectByVisibleText(`IT`)
+        
+        this.scrollElement(elem.saveBtn)
+        elem.saveBtn.click()
+        elem.statusDropDown.waitForDisplayed({ timeout: 270000 });
+        assert.strictEqual(elem.cancelTicketBtn.isEnabled(), true);
+        assert.strictEqual(elem.holdTicketBtn.isEnabled(), true);
+        // browser.pause(900000);
     }
 
     preferredTechDate () {
