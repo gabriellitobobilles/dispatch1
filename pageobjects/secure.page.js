@@ -19,9 +19,9 @@ class SecurePage  {
     get addTicketBtn () { return $(`[id="btnAddTicket"]`)}
     get addClientOption () { return $(`[id="ClientID"]`)}
     get endClientOption () { return $('//*[@id="EndClientID"]')}
-    get clientContactOption () { return $('//*[@id="ClientTicketInitiator"]')}
-    get clientCountryOption () { return $('//*[@id="CountryId"]')}
-    get clientLocationOption () { return $('//*[@id="ClientSiteID"]')}
+    get clientContactOption () { return $(`//*[@id="ClientTicketInitiator"]`)}
+    get clientCountryOption () { return $(`//*[@id="CountryId"]`)}
+    get clientLocationOption () { return $(`//*[@id="ClientSiteID"]`)}
     
     //**OverView */
     get issueTitle () { return $(`[id="Issue"]`)}
@@ -35,12 +35,16 @@ class SecurePage  {
     get kinettixResponseCategoryId () { return $(`[id="KinettixResponseCategoryId"]`)}
     get clientPreferredDateTime () { return $(`[id="ClientPreferredDateTime"]`)}
     // ** required Tools */
-    get ticketRequiredTools () { return $(`[id="TicketRequiredTools"]`)}
+    get ticketRequiredTools () { return $(`[id="tinymce"]`)}
     // ** Miscellaneous elements */
     get saveBtn () { return $('button=Save')}
     get statusDropDown () { return $(`[id="StatusdDropDown"]`)}
     get cancelTicketBtn () { return $('button=Cancel Ticket')}
     get holdTicketBtn () { return $('button=Hold Ticket')}
+    get MSN () { return $(`[id="CustomFields.Fields[0].Value"]`)}
+    get equipment () { return $(`[id="CustomFields_Fields[1].Value"]`)}
+    
+    
 
 
     // ** Vendor Menu *

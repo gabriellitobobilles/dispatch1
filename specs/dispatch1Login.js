@@ -14,7 +14,7 @@ describe('My Login application', () => {
         
     });
 
-    xit('Add New Ticket', () => {
+    it('Add New Dispatch Ticket', () => {
         
         //**client */
         LoginPage.moveToElement(SecurePage.dispatchMenu)
@@ -25,20 +25,16 @@ describe('My Login application', () => {
         browser.pause(1000);
         LoginPage.moveToElement(SecurePage.addClientOption)
         SecurePage.addClientOption.selectByVisibleText(`Walker Industries`)
-        //browser.pause(5000);
-        browser.waitUntil(() =>SecurePage.endClientOption.selectByVisibleText(`Thornton and Co`).waitForExist( { timeout: 270000 }), { timeout: 270000 })
+        browser.pause(5000);
         LoginPage.moveToElement(SecurePage.endClientOption)
         SecurePage.endClientOption.selectByVisibleText(`Thornton and Co`)
-        //browser.pause(5000);
-        browser.waitUntil(() => SecurePage.clientContactOption.selectByVisibleText(`Menwon  Borh`).waitForExist( { timeout: 270000 }), { timeout: 270000 })
+        browser.pause(5000);
         LoginPage.moveToElement(SecurePage.clientContactOption)
         SecurePage.clientContactOption.selectByVisibleText(`Menwon  Borh`)
-        // browser.pause(5000);
-        browser.waitUntil(() => SecurePage.clientCountryOption.selectByVisibleText(`Guam`).waitForExist( { timeout: 270000 }), { timeout: 270000 })
+        browser.pause(5000);
         LoginPage.moveToElement(SecurePage.clientCountryOption)
         SecurePage.clientCountryOption.selectByVisibleText(`Guam`)
-        // browser.pause(5000);
-        browser.waitUntil(() => SecurePage.clientLocationOption.selectByVisibleText(`Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam`).waitForExist( { timeout: 270000 }), { timeout: 270000 })
+        browser.pause(5000);
         LoginPage.moveToElement(SecurePage.clientLocationOption)
         SecurePage.clientLocationOption.selectByVisibleText(`Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam`)
 
@@ -49,7 +45,8 @@ describe('My Login application', () => {
         browser.switchToFrame($(`#ScopeOfWork_ifr`))
         SecurePage.scopeOfWork.click()
         SecurePage.scopeOfWork.setValue(`This is just a test project please ignore thanks ~~ gabriel`)
-        browser.pause(5000);
+        browser.switchToParentFrame();
+        browser.pause(2000);
         LoginPage.scrollElement(SecurePage.problemCodeId)
         LoginPage.moveToElement(SecurePage.problemCodeId)
         SecurePage.problemCodeId.selectByVisibleText(`New Equipment Installation`)
@@ -70,11 +67,18 @@ describe('My Login application', () => {
         LoginPage.preferredTechDate()
 
         // ** required Tools */
+        browser.switchToFrame($(`#TicketRequiredTools_ifr`))
         LoginPage.scrollElement(SecurePage.ticketRequiredTools)
         SecurePage.ticketRequiredTools.click()
         SecurePage.ticketRequiredTools.setValue(`This is just a test project please ignore thanks ~~ gabriel`)
+        browser.switchToParentFrame();
 
-
+        SecurePage.MSN.click()
+        SecurePage.MSN.setValue(`3424342342343244`)
+        browser.pause(3000);
+        LoginPage.moveToElement(SecurePage.equipment)
+        SecurePage.equipment.selectByVisibleText(`IT`)
+        
         LoginPage.scrollElement(SecurePage.saveBtn)
         SecurePage.saveBtn.click()
         SecurePage.statusDropDown.waitForDisplayed({ timeout: 270000 });
@@ -84,7 +88,7 @@ describe('My Login application', () => {
 
     });
 
-    xit('KIN-838: Validate Primary Vendor Number', () => {
+    it('KIN-838: Validate Primary Vendor Number', () => {
         
         //**client */
         LoginPage.moveToElement(SecurePage.ventureUrl)
@@ -152,7 +156,7 @@ describe('My Login application', () => {
 
     });
 
-    xit('KIN-838: Validate Secondary Vendor Number', () => {
+    it('KIN-838: Validate Secondary Vendor Number', () => {
         
         //**client */
         LoginPage.moveToElement(SecurePage.ventureUrl)
@@ -236,6 +240,15 @@ describe('My Login application', () => {
         SecurePage.woNumber.click()
         SecurePage.woNumber.setValue(LoginPage._randomString(35));
         assert.strictEqual(SecurePage.woNumber.getValue().length, 29);
+    
+    });
+    
+    it('KIN3-74: Client Portal Not Secure', () => {
+
+        //**client */
+        browser.url(`http://qa.clientportal.dispatch1.com/login?returnUrl=%2FDashboard`)
+        assert.strictEqual(browser.getUrl(), `https://qa.clientportal.dispatch1.com/login?returnUrl=%2FDashboard`);
+        
     
     });
     
