@@ -30,7 +30,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-         './specs/**/dispatch1Login.js',
+         './specs/**/Test.js',
        // './specs/**/screenCompare.js'
         
     ],

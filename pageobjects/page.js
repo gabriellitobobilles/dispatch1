@@ -38,21 +38,24 @@ module.exports = class Page {
         this.moveToElement(elem.dispatchMenu)
         elem.dispatchManageSubMenu.click()
         browser.pause(1000);
+        // expect($('#kinettixLoaderimg')).toExist()
         elem.addTicketBtn.waitForDisplayed({ timeout: 270000 });
         elem.addTicketBtn.click()
         browser.pause(1000);
         this.moveToElement(elem.addClientOption)
         elem.addClientOption.selectByVisibleText(`Walker Industries`)
-        browser.pause(5000);
+        $(`//select[@id='EndClientID']//option[text()= "Thornton and Co"]`).waitForExist({ timeout: 10000 });
         this.moveToElement(elem.endClientOption)
         elem.endClientOption.selectByVisibleText(`Thornton and Co`)
-        browser.pause(5000);
+        $(`//select[@id='ClientTicketInitiator']//option[text()= " Menwon  Borh"]`).waitForExist({ timeout: 10000 });
+        browser.pause(3000);
         this.moveToElement(elem.clientContactOption)
         elem.clientContactOption.selectByVisibleText(`Menwon  Borh`)
-        browser.pause(5000);
+        $(`//select[@id='CountryId']//option[text()= "Guam"]`).waitForExist({ timeout: 10000 });
+        browser.pause(3000);
         this.moveToElement(elem.clientCountryOption)
         elem.clientCountryOption.selectByVisibleText(`Guam`)
-        browser.pause(5000);
+        $(`//select[@id='ClientSiteID']//option[text()= "Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam"]`).waitForExist({ timeout: 10000 });
         this.moveToElement(elem.clientLocationOption)
         elem.clientLocationOption.selectByVisibleText(`Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam`)
 
@@ -68,11 +71,11 @@ module.exports = class Page {
         this.scrollElement(elem.problemCodeId)
         this.moveToElement(elem.problemCodeId)
         elem.problemCodeId.selectByVisibleText(`New Equipment Installation`)
-        browser.pause(5000);
+        $(`//select[@id='TechnicianTypeId']//option[text()= "Field Tech"]`).waitForExist({ timeout: 10000 });
         this.scrollElement(elem.technicianTypeId)
         this.moveToElement(elem.technicianTypeId)
         elem.technicianTypeId.selectByVisibleText(`Field Tech`)
-        browser.pause(5000);
+        $(`//select[@id='NumberOfTechs']//option[text()= "10"]`).waitForExist({ timeout: 10000 });
         this.scrollElement(elem.numberOfTechs)
         this.moveToElement(elem.numberOfTechs)
         elem.numberOfTechs.selectByVisibleText(`10`)
