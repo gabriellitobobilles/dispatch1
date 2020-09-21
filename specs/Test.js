@@ -29,9 +29,6 @@ describe('My Login application', () => {
         $(`[class="jobView active"]`).waitForDisplayed({ timeout: 270000 });
         $(`[class="jobView active"]`).click()
         browser.pause(2000);
-
-
-
         $(`[class="btn select-vendor"]`).waitForDisplayed({ timeout: 270000 });
         $(`[class="btn select-vendor"]`).click();
         $(`button=Assign Job`).waitForDisplayed({ timeout: 270000 });
@@ -58,18 +55,40 @@ describe('My Login application', () => {
         $(`[id="CustomFields_Fields_0__Value"]`).setValue(`Information Technology`)
         LoginPage.scrollElement($(`//input[@value='Save' and @type='button']`))
         $(`//input[@value='Save' and @type='button']`).click()
-        $(`.activity-action-button`).waitForDisplayed({ timeout: 270000 });
-        // console.log(browser.$$(`.activity-action-button`).length())
+        $(`//*[@id='ToBeScheduledSection']//button[text()= "Confirm"]`).waitForDisplayed({ timeout: 270000 });
 
-        $$(`.activity-action-button`).map(function(element){
-            console.log (element.getAttribute('innerText'))
+        // ** To be Scheduled */
+        $$(`//*[@id='ToBeScheduledSection']//button[text()= "Confirm"]`).forEach(function(elem){
+            elem.click()
             $(`[class="confirm"]`).waitForDisplayed({ timeout: 270000 });
-            $(`[class="confirm"]`).click()
-            
-        })
+            browser.pause(2000);
+            $(`[class="confirm"]`).click();
+            browser.waitUntil(
+                () => $(`[id="kinettixLoaderimg"]`).isDisplayed() === true,
+                {
+                    timeout: 270000,
+                    timeoutMsg: 'expected text to be different after 5s'
+                }
+            );
+        });
 
-        browser.pause(900000);
-        
+        $(`//*[@id='ScheduledSection']//button[text()= "Confirm"]`).waitForDisplayed({ timeout: 270000 });
+
+        // ** Schedule Visit 1 confirmation*
+        $$(`//*[@id='ScheduledSection']//button[text()= "Confirm"]`).forEach(function(elem){
+            elem.click()
+            $(`[class="confirm"]`).waitForDisplayed({ timeout: 270000 });
+            browser.pause(2000);
+            // $(`[class="confirm"]`).click();
+            browser.waitUntil(
+                () => $(`[id="kinettixLoaderimg"]`).isDisplayed() === true,
+                {
+                    timeout: 270000,
+                    timeoutMsg: 'expected text to be different after 5s'
+                }
+            );
+        });
+        $(`//*[@id='ScheduledSection']//button[text()= "Check In"]`).click();
 
     });
 
