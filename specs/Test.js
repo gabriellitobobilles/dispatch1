@@ -14,12 +14,10 @@ describe('My Login application', () => {
         
     });
 
-    it('Add New Dispatch Ticket', () => {
+    it('Dispatch Ticket End to End Flow', () => {
         
         LoginPage.createNewDispatchTicket()
 
-        // LoginPage.moveToElement(SecurePage.dispatchMenu)
-        // SecurePage.dispatchManageSubMenu.click()
 
         $(`//div[@id='dv_TicketDetail']//span`).waitForDisplayed({ timeout: 270000 });
         let kID = $(`//div[@id='dv_TicketDetail']//span`).getText()
@@ -116,21 +114,40 @@ describe('My Login application', () => {
         });
 
             // ** PendingDeliverableSecntion */
-            $(`//*[@id='PendingDeliverableSecntion']//button[text()= " Complete Now"]`).waitForDisplayed({ timeout: 270000 });
+            // browser.pause(2000);
+            // $(`//*[@id='PendingDeliverableSecntion']//button[text()= " Complete Now"]`).waitForClickable({ timeout: 270000 });
+            // browser.pause(2000);
+            // $(`//*[@id='PendingDeliverableSecntion']//button[text()= " Complete Now"]`).click()
+            // browser.pause(2000);
+            // $(`//*[@id='EditPOForm']//input[@value= "Save"]`).waitForClickable({ timeout: 270000 });
+            // $(`//*[@id='EditPOForm']//input[@value= "Save"]`).click()
+            // browser.pause(2000);
+            // $(`a=Activity`).click()
+            browser.pause(2000);
+            $(`[id="deliverableTabBtn"]`).waitForClickable({ timeout: 270000 });
+            $(`[id="deliverableTabBtn"]`).click();
+            browser.pause(2000);
+            $(`[id="addReasonCodeBtn"]`).waitForClickable({ timeout: 270000 });
+            $(`[id="addReasonCodeBtn"]`).click();
+            $(`//select[@id='DeliverableReasonID']//option[text()= "No Deliverables Required"]`).waitForExist({ timeout: 10000 });
+            LoginPage.moveToElement($(`[id="DeliverableReasonID"]`))
+            $(`[id="DeliverableReasonID"]`).selectByVisibleText(`No Deliverables Required`)
+            browser.pause(2000);
+            $(`[id="DeliverableReasonComment"]`).click()
+            $(`[id="DeliverableReasonComment"]`).setValue(`This is just a test`)
+            browser.pause(2000);
+            $(`//*[@id='myModalContent']//input[@value= "Update"]`).click()
+            browser.pause(2000);
+            $(`a=Activity`).click()
+            $(`//*[@id='PendingDeliverableSecntion']//button[text()= "Confirm"]`).waitForClickable({ timeout: 270000 });
+            $(`//*[@id='PendingDeliverableSecntion']//button[text()= "Confirm"]`).click()
+            browser.pause(2000);
+            $(`//*[@id='PendingDeliverableSecntion']//button[text()= " Complete Now"]`).waitForClickable({ timeout: 270000 });
             browser.pause(2000);
             $(`//*[@id='PendingDeliverableSecntion']//button[text()= " Complete Now"]`).click()
             browser.pause(2000);
-            $(`//*[@id='EditPOForm']//input[@value= "Save"]`).waitForDisplayed({ timeout: 270000 });
+            $(`//*[@id='EditPOForm']//input[@value= "Save"]`).waitForClickable({ timeout: 270000 });
             $(`//*[@id='EditPOForm']//input[@value= "Save"]`).click()
-            browser.pause(2000);
-            $(`a=Activity`).click()
-            browser.pause(2000);
-            $(`//*[@id='PendingDeliverableSecntion']//button[text()= "Upload Deliverables"]`).waitForDisplayed({ timeout: 270000 });
-            $(`//*[@id='PendingDeliverableSecntion']//button[text()= "Upload Deliverables"]`).click()
-            browser.pause(2000);
-            $(`[id="addReasonCodeBtn"]`).waitForDisplayed({ timeout: 270000 });
-            $(`[id="addReasonCodeBtn"]`).click();
-
         browser.pause(90000000);
     });
 

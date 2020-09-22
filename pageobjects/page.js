@@ -44,18 +44,18 @@ module.exports = class Page {
         browser.pause(1000);
         this.moveToElement(elem.addClientOption)
         elem.addClientOption.selectByVisibleText(`Walker Industries`)
-        $(`//select[@id='EndClientID']//option[text()= "Thornton and Co"]`).waitForExist({ timeout: 10000 });
+        $(`//select[@id='EndClientID']//option[text()= "Thornton and Co"]`).waitForExist({ timeout: 60000 });
         this.moveToElement(elem.endClientOption)
         elem.endClientOption.selectByVisibleText(`Thornton and Co`)
-        $(`//select[@id='ClientTicketInitiator']//option[text()= " Menwon  Borh"]`).waitForExist({ timeout: 10000 });
+        $(`//select[@id='ClientTicketInitiator']//option[text()= " Menwon  Borh"]`).waitForExist({ timeout: 60000 });
         browser.pause(3000);
         this.moveToElement(elem.clientContactOption)
         elem.clientContactOption.selectByVisibleText(`Menwon  Borh`)
-        $(`//select[@id='CountryId']//option[text()= "Guam"]`).waitForExist({ timeout: 10000 });
+        $(`//select[@id='CountryId']//option[text()= "Guam"]`).waitForExist({ timeout: 60000 });
         browser.pause(3000);
         this.moveToElement(elem.clientCountryOption)
         elem.clientCountryOption.selectByVisibleText(`Guam`)
-        $(`//select[@id='ClientSiteID']//option[text()= "Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam"]`).waitForExist({ timeout: 10000 });
+        $(`//select[@id='ClientSiteID']//option[text()= "Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam"]`).waitForExist({ timeout: 60000 });
         this.moveToElement(elem.clientLocationOption)
         elem.clientLocationOption.selectByVisibleText(`Tamuning, GU||12398 Russell Street|Tamuning|GU|Guam`)
 
