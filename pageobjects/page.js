@@ -108,6 +108,21 @@ module.exports = class Page {
         // browser.pause(900000);
     }
 
+    techCheckInDate () {
+      
+        let schedTime =this._getSchedule()
+        let month = this._getmonth_name(new Date(schedTime))
+        let dt =  new Date(schedTime)
+        let day = dt.getDate()
+        elem.clientPreferredDateTime.click()
+        browser.pause(3000);
+        $(`[class="picker-switch"]`).moveTo()
+        $(`[class="picker-switch"]`).click()
+        $(`span=${month}`).click()
+        $(`td=${day}`).click()
+        
+    }
+
     preferredTechDate () {
       
         let schedTime =this._getSchedule()

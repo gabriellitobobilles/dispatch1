@@ -73,23 +73,65 @@ describe('My Login application', () => {
         });
 
         $(`//*[@id='ScheduledSection']//button[text()= "Confirm"]`).waitForDisplayed({ timeout: 270000 });
-
+        console.log($$(`//*[@id='ScheduledSection']//button[text()= "Confirm"]`).length)
         // ** Schedule Visit 1 confirmation*
         $$(`//*[@id='ScheduledSection']//button[text()= "Confirm"]`).forEach(function(elem){
             elem.click()
-            $(`[class="confirm"]`).waitForDisplayed({ timeout: 270000 });
+            // $(`[class="confirm"]`).waitForDisplayed({ timeout: 270000 });
             browser.pause(2000);
             // $(`[class="confirm"]`).click();
             browser.waitUntil(
-                () => $(`[id="kinettixLoaderimg"]`).isDisplayed() === true,
+                () => $(`[id="kinettixLoaderimg"]`).isDisplayed() === false,
                 {
                     timeout: 270000,
                     timeoutMsg: 'expected text to be different after 5s'
                 }
             );
         });
-        $(`//*[@id='ScheduledSection']//button[text()= "Check In"]`).click();
+        browser.pause(2000);
+        $(`button=Check In`).click();
+        browser.pause(2000);
+        $(`//*[@id="myModalContent"]//input[@value="Check In"]`).click()
+        browser.pause(2000);
+        $(`button=Check Out`).click();
+        browser.pause(2000);
+        $(`//*[@id="myModalContent"]//input[@value="Check Out"]`).click()
+        browser.pause(2000);
+        $(`[class="cancel"]`).waitForDisplayed({ timeout: 270000 });
+        $(`[class="cancel"]`).click()
 
+        // ** In Work */
+        $(`//*[@id='InWorkSection']//button[text()= "Confirm"]`).waitForDisplayed({ timeout: 270000 });
+        browser.pause(3000);
+        $$(`//*[@id='InWorkSection']//button[text()= "Confirm"]`).forEach(function(elem){
+            elem.click()
+            browser.pause(2000);
+            browser.waitUntil(
+                () => $(`[id="kinettixLoaderimg"]`).isDisplayed() === false,
+                {
+                    timeout: 270000,
+                    timeoutMsg: 'expected text to be different after 5s'
+                }
+            );
+        });
+
+            // ** PendingDeliverableSecntion */
+            $(`//*[@id='PendingDeliverableSecntion']//button[text()= " Complete Now"]`).waitForDisplayed({ timeout: 270000 });
+            browser.pause(2000);
+            $(`//*[@id='PendingDeliverableSecntion']//button[text()= " Complete Now"]`).click()
+            browser.pause(2000);
+            $(`//*[@id='EditPOForm']//input[@value= "Save"]`).waitForDisplayed({ timeout: 270000 });
+            $(`//*[@id='EditPOForm']//input[@value= "Save"]`).click()
+            browser.pause(2000);
+            $(`a=Activity`).click()
+            browser.pause(2000);
+            $(`//*[@id='PendingDeliverableSecntion']//button[text()= "Upload Deliverables"]`).waitForDisplayed({ timeout: 270000 });
+            $(`//*[@id='PendingDeliverableSecntion']//button[text()= "Upload Deliverables"]`).click()
+            browser.pause(2000);
+            $(`[id="addReasonCodeBtn"]`).waitForDisplayed({ timeout: 270000 });
+            $(`[id="addReasonCodeBtn"]`).click();
+
+        browser.pause(90000000);
     });
 
     
